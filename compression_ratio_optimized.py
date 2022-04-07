@@ -14,7 +14,7 @@ def compare_csrs(name, root):
     dataset = PygNodePropPredDataset(name = args.name, root = args.root)
     train_idx = dataset.get_idx_split()['train'].numpy()
     edge_index = dataset.data.edge_index.numpy()
-    (glzip_csr, _) = gl.CSR(edge_index=edge_index).optimize(train_idx, [15, 10, 5])
+    (glzip_csr, _) = gl.CSR(edge_index=edge_index).optimize(train_idx, [10, 10])
     normal_csr_nbytes = normal_csr(edge_index)
     
     edge_index_ratio_str = "{:2.2%}".format(glzip_csr.nbytes / edge_index.nbytes)
